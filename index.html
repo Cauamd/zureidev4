@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Adivinhação de Números</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 0 auto;
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 18px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Jogo de Adivinhação de Números</h1>
+<p>Tente adivinhar o número entre 1 e 100!</p>
+
+<div class="container">
+    <label for="guess">Digite um número:</label>
+    <input type="number" id="guess" min="1" max="100">
+    <button onclick="verificarAdivinhacao()">Tentar</button>
+    <p id="resultMessage" class="message"></p>
+    <p id="attemptsMessage" class="message"></p>
+</div>
+
+<script>
+    let numeroAleatorio = Math.floor(Math.random() * 100) + 1;
+    let tentativas = 0;
+
+    function verificarAdivinhacao() {
+        const guess = document.getElementById('guess').value;
+        const resultMessage = document.getElementById('resultMessage');
+        const attemptsMessage = document.getElementById('attemptsMessage');
+        tentativas++;
+
+        if (guess < numeroAleatorio) {
+            resultMessage.textContent = "Tente um número maior!";
+            resultMessage.style.color = "orange";
+        } else if (guess > numeroAleatorio) {
+            resultMessage.textContent = "Tente um número menor!";
+            resultMessage.style.color = "orange";
+        } else {
+            resultMessage.textContent = Parabéns! Você acertou o número em ${tentativas} tentativas!;
+            resultMessage.style.color = "green";
+        }
+
+        attemptsMessage.textContent = Tentativas: ${tentativas};
+    }
+</script>
+
+</body>
+</html>
